@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import Header from "components/Hearder";
 import pokeballbg from "public/pokeballbg.png";
-import pokeball from "public/pokeball-edited.png";
 
 type Props = {
   children: any;
