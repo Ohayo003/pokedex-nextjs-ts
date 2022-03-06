@@ -32,7 +32,7 @@ const LoadingSpinner = () => {
             fontSize={20}
             fontStyle="italic"
             fontWeight="semibold"
-            color="white"
+            color="red"
           >
             Please wait...
           </Box>
