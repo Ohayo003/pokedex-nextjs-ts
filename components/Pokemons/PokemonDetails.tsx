@@ -172,8 +172,14 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                       >
                         {basic.stat.name}
                       </Box>
-                      <Box width={150}>
+                      <Box
+                        width={150}
+                        border="1px"
+                        borderColor="white"
+                        borderRadius={50}
+                      >
                         <ProgressBar
+                          height="22px"
                           bgColor={
                             details.element.length <= 1
                               ? TypesColor(details.element[0].type.name)
