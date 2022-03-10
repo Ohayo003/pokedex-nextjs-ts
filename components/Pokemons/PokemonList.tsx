@@ -8,20 +8,22 @@ import {
 } from "@chakra-ui/react";
 import { IPokemonData } from "components/interface/pokemonData";
 import Image from "next/image";
-import { TypesColor } from "components/functions/TypesColor";
+import { TypesColor } from "components/functions/typesColor";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { usePagination } from "components/functions/Pagination";
+import { usePagination } from "components/hooks/usePagination";
 import PaginationButtons from "./PaginationButtons";
 import { useRouter } from "next/router";
+import { GetPokemonDataList } from "types/GetPokemonDataList";
 
 export const MotionBox = motion<BoxProps>(Box);
 
 type PokemonListType = {
-  data: IPokemonData[];
+  data: GetPokemonDataList["pokemon"];
+  fetchType: "csr" | "ssg";
 };
 
-const PokemonList = ({ data }: PokemonListType) => {
+const PokemonList = ({ data, fetchType }: PokemonListType) => {
   const { currentData, currentPage, nextPage, previousPage } = usePagination(
     10,
     { data }
@@ -29,7 +31,11 @@ const PokemonList = ({ data }: PokemonListType) => {
   const route = useRouter();
 
   const handleChangeRoute = (id: number) => {
-    route.push(`/ssg/pokemon/${id}`, undefined, { shallow: false });
+    route.push(
+      fetchType === "csr" ? `/ssr/pokemon/${id}` : `/ssg/pokemon/${id}`,
+      undefined,
+      { shallow: false }
+    );
   };
 
   const [hovering, setHovering] = useState(false);
@@ -81,7 +87,7 @@ const PokemonList = ({ data }: PokemonListType) => {
                     borderColor="#ef4444"
                     maxW="xl"
                     _hover={{ backgroundColor: "#0ea5e9" }}
-                    background={TypesColor(pokemon.element[0].type.name)}
+                    background={TypesColor(`${pokemon.element[0]?.type?.name}`)}
                     borderRadius={10}
                     overflow="hidden"
                     // p="2"
@@ -102,7 +108,7 @@ const PokemonList = ({ data }: PokemonListType) => {
                         />
                       ) : (
                         <Image
-                          src={pokemon.image}
+                          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`}
                           alt={pokemon.name}
                           priority={true}
                           layout="responsive"
@@ -134,7 +140,7 @@ const PokemonList = ({ data }: PokemonListType) => {
                           {pokemon.element.map((e) => {
                             return (
                               <Box
-                                key={e.type.name}
+                                key={e.type?.name}
                                 fontWeight="semibold"
                                 letterSpacing="wide"
                                 background="skyblue"
@@ -147,7 +153,7 @@ const PokemonList = ({ data }: PokemonListType) => {
                                 alignSelf="center"
                                 textTransform="uppercase"
                               >
-                                {e.type.name}
+                                {e.type?.name}
                               </Box>
                             );
                           })}
@@ -156,7 +162,7 @@ const PokemonList = ({ data }: PokemonListType) => {
 
                       <Box>
                         <Box as="span" color="gray.200" ml={5} fontSize="sm">
-                          Base Experience: {pokemon.experience}
+                          Base Experience: {pokemon.base_experience}
                         </Box>
                       </Box>
                     </Box>

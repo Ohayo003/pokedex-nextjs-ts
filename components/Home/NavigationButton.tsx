@@ -1,4 +1,4 @@
-import { Box, Button, type BoxProps } from "@chakra-ui/react";
+import { Box, type BoxProps } from "@chakra-ui/react";
 import Image from "next/image";
 import pokemonGo from "public/pngegg.png";
 import styles from "styles/BtnNavigation.module.css";

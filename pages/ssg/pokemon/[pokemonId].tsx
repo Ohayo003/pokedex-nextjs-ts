@@ -9,14 +9,25 @@ import PokemonDetails from "components/Pokemons/PokemonDetails";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "components/LoadingSpinner";
+import client from "apollo/apollo-client";
+import { GET_POKEMON } from "../../../graphql/queries/pokemonlist";
+import { GET_POKEMON_DATA_LIST } from "graphql/queries/pokemonlist";
+import { GetPokemonDataList } from "../../../types/GetPokemonDataList";
+import { GetPokemon } from "../../../types/GetPokemon";
 
 type PokemonIdType = {
-  details: IPokemonDetails;
+  details: GetPokemon;
 };
+
+interface Params {
+  [key: string]: string;
+  id: string;
+}
 
 const PokemonId = ({ details }: PokemonIdType) => {
   const [loading, setLoading] = useState(false);
   const route = useRouter();
+  // console.log(query.pokemonId);
 
   useEffect(() => {
     const handelChangeRoute = () => {
@@ -45,7 +56,7 @@ const PokemonId = ({ details }: PokemonIdType) => {
       ) : route.isFallback ? (
         <LoadingSpinner />
       ) : (
-        <PokemonDetails details={details} />
+        details && <PokemonDetails details={details.pokemon} />
       )}
     </Box>
   );
@@ -54,9 +65,12 @@ const PokemonId = ({ details }: PokemonIdType) => {
 export default PokemonId;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const {params} = context;
-  const data = await fetchLimitPokemons();
-  const paths = data.map((pokemon) => {
+  // const { pokemonId } = ;
+
+  const { data } = await client.query<GetPokemonDataList>({
+    query: GET_POKEMON_DATA_LIST,
+  });
+  const paths = data.pokemon.map((pokemon) => {
     return {
       params: {
         pokemonId: `${pokemon.id}`,
@@ -71,8 +85,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { pokemonId } = context.params!;
-  const data = await fetchPokemonDetails(pokemonId);
+  const { params } = context;
+  const { data } = await client.query<GetPokemon>({
+    query: GET_POKEMON,
+    variables: { id: params?.pokemonId },
+  });
 
   return {
     props: {

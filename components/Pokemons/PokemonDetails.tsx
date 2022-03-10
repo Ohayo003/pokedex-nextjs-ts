@@ -8,19 +8,19 @@ import {
   ScaleFade,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import { TypesColor } from "components/functions/TypesColor";
+import { TypesColor } from "components/functions/typesColor";
 import { IPokemonDetails } from "components/interface/pokemonData";
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ProgressBar from "@ramonak/react-progress-bar";
 import MoreDetails from "./MoreDetails";
+import { GetPokemon } from "../../types/GetPokemon";
 
 export const MotionBox = motion<BoxProps>(Box);
 
 type PokemonDetailsType = {
-  details: IPokemonDetails;
-  
+  details: GetPokemon["pokemon"];
 };
 
 const PokemonDetails = ({ details }: PokemonDetailsType) => {
@@ -48,14 +48,14 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
           position="relative"
           borderRadius="20px 20px 60px 60px"
           background={TypesColor(
-            details.element.length <= 1
-              ? details.element[0].type.name
-              : details.element[1].type.name
+            details!.element?.length <= 1
+              ? `${details?.element[0]?.type?.name}`
+              : `${details?.element[1]?.type?.name}`
           )}
         >
           <Image
-            src={details.image}
-            alt={details.name}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${details?.id}.png`}
+            alt={details?.name}
             priority
             layout="responsive"
             width={20}
@@ -68,11 +68,11 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
               border="2px"
               textAlign="center"
               borderRadius={20}
-              background={TypesColor(details.element[0].type.name)}
+              background={TypesColor(`${details!.element[0]?.type?.name}`)}
             >
               Abilities
             </Box>
-            {details.abilities.map((skill, idx) => {
+            {details?.abilities.map((skill, idx) => {
               return (
                 <HStack key={idx}>
                   <Box>
@@ -84,7 +84,7 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                     fontWeight="semibold"
                     color="white"
                   >
-                    {skill.ability.name}
+                    {skill?.ability?.name}
                   </Box>
                 </HStack>
               );
@@ -102,26 +102,26 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
             color="white"
             justifyContent="center"
           >
-            {details.name}
+            {details?.name}
           </Box>
           <Box height={10}>
             <Flex justify="center">
-              {details.element.map((e, idx) => {
+              {details?.element.map((e) => {
                 return (
                   <Box
-                    key={idx}
+                    key={e.type?.name}
                     p="0px 15px 0px 15px"
                     borderRadius={15}
                     border="2px"
                     borderColor="white"
-                    background={TypesColor(e.type.name)}
+                    background={TypesColor(`${e.type?.name}`)}
                     m="0px 10px"
                     fontSize={17}
                     fontWeight="bold"
                     color="white"
                     height={31}
                   >
-                    {e.type.name}
+                    {e.type?.name}
                   </Box>
                 );
               })}
@@ -131,7 +131,7 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
             <Flex justify="center" justifyContent="space-around">
               <VStack spacing="5px">
                 <Box fontSize={30} fontWeight="bold" fontFamily="sans-serif">
-                  {details.weight} kg
+                  {details?.weight} kg
                 </Box>
                 <Box fontStyle="italic" fontWeight="semibold">
                   Weight
@@ -139,7 +139,7 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
               </VStack>
               <VStack spacing="5px">
                 <Box fontSize={30} fontWeight="bold" fontFamily="sans-serif">
-                  {details.height} m
+                  {details?.height} m
                 </Box>
                 <Box fontStyle="italic" fontWeight="semibold">
                   Height
@@ -164,21 +164,22 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                 p="5px 0px"
                 gap={1}
                 // spacingX={10}
-                row={details.stats.length}
+                row={details?.stats.length}
                 width="inherit"
                 columns={2}
               >
-                {details.stats.map((basic) => {
+                {details?.stats.map((basic) => {
                   return (
                     <>
                       <Box
+                        key={basic.stat?.name}
                         color="white"
                         width={120}
                         fontSize={15}
                         fontWeight="bold"
                         textAlign="right"
                       >
-                        {basic.stat.name}
+                        {basic?.stat?.name}
                       </Box>
                       <Box
                         width={150}
@@ -189,9 +190,9 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                         <ProgressBar
                           height="22px"
                           bgColor={
-                            details.element.length <= 1
-                              ? TypesColor(details.element[0].type.name)
-                              : TypesColor(details.element[1].type.name)
+                            details!.element.length <= 1
+                              ? TypesColor(`${details!.element[0]?.type?.name}`)
+                              : TypesColor(`${details!.element[1]?.type?.name}`)
                           }
                           completed={`${basic.base_stat}`}
                         />
@@ -234,10 +235,10 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
             borderRadius="20px"
             borderColor="#CAEFFF"
           >
-            <MoreDetails
-              moves={details.moves}
+            {/* <MoreDetails
+              moves={details?.moves}
               setViewMore={handleViewMoreClose}
-            />
+            /> */}
           </Box>
         </ScaleFade>
       ) : null}

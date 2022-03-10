@@ -1,3 +1,5 @@
+import {} from "types/GetPokemonDataList";
+
 export const TypesColor = (element: string) => {
   var color = "";
   switch (element) {

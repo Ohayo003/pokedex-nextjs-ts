@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IPokemonMoves } from "components/interface/pokemonData";
 import { useEffect } from "react";
-import PokemonMovesObject from "components/functions/PokemonMovesObject";
+import PokemonMovesObject from "components/functions/pokemonMovesObject";
 import {
   Box,
   SimpleGrid,

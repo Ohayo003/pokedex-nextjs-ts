@@ -3,9 +3,9 @@ import {
   IPokemonDetails,
   IPokemonMoves,
 } from "components/interface/pokemonData";
-import PokemonMovesObject from "components/functions/PokemonMovesObject";
-import PokemonObject from "components/functions/PokemonObject";
-import PokemonObjectDetails from "components/functions/PokemonObjectDetails";
+import PokemonMovesObject from "components/functions/pokemonMovesObject";
+import PokemonObject from "components/functions/pokemonObject";
+import PokemonObjectDetails from "components/functions/pokemonObjectDetails";
 
 type IMovesType = {
   data: IPokemonDetails;

@@ -6,9 +6,12 @@ import { useEffect, useState } from "react";
 import { IPokemonData } from "../../../components/interface/pokemonData";
 import Router, { useRouter } from "next/router";
 import LoadingSpinner from "components/LoadingSpinner";
+import client from "apollo/apollo-client";
+import { GET_POKEMON_DATA_LIST } from "graphql/queries/pokemonlist";
+import { GetPokemonDataList } from "../../../types/GetPokemonDataList";
 
 type PokemonPropsType = {
-  data: IPokemonData[];
+  data: GetPokemonDataList;
 };
 
 const Pokemon = ({ data }: PokemonPropsType) => {
@@ -32,32 +35,13 @@ const Pokemon = ({ data }: PokemonPropsType) => {
       Router.events.off("routeChangeComplete", handleChangeRouteComplete);
     };
   }, []);
-
-  // useEffect(() => {
-  //   const handleRouteChange = (url: string) => {
-  //     console.log(`Loading: ${url}`);
-  //     setLoading(true);
-  //   };
-  //   const handleRouteComplete = () => {
-  //     setLoading(false);
-  //   };
-
-  //   router.events.on("routeChangeStart", handleRouteChange);
-  //   router.events.on("routeChangeComplete", handleRouteComplete);
-  //   router.events.on("routeChangeError", handleRouteComplete);
-
-  //   // If the component is unmounted, unsubscribe
-  //   // from the event with the `off` method:
-  //   return () => {
-  //     router.events.off("routeChangeStart", handleRouteChange);
-  //     router.events.off("routeChangeComplete", handleRouteComplete);
-  //     router.events.on("routeChangeError", handleRouteComplete);
-  //   };
-  // }, [router]);
-
   return (
     <Box height="inherit" p="50px 0px">
-      {loading ? <LoadingSpinner /> : <PokemonList data={data} />}
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <PokemonList data={data.pokemon} fetchType="ssg" />
+      )}
     </Box>
   );
 };
@@ -65,7 +49,9 @@ const Pokemon = ({ data }: PokemonPropsType) => {
 export default Pokemon;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetchLimitPokemons();
+  const { data } = await client.query<GetPokemonDataList>({
+    query: GET_POKEMON_DATA_LIST,
+  });
   return {
     props: {
       data: data,
