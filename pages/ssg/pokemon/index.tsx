@@ -1,14 +1,12 @@
 import { Box } from "@chakra-ui/react";
-import { fetchLimitPokemons } from "components/functions/fetchPokemonData";
 import PokemonList from "components/Pokemons/PokemonList";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps } from "next";
 import { useEffect, useState } from "react";
-import { IPokemonData } from "../../../components/interface/pokemonData";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import LoadingSpinner from "components/LoadingSpinner";
 import client from "apollo/apollo-client";
 import { GET_POKEMON_DATA_LIST } from "graphql/queries/pokemonlist";
-import { GetPokemonDataList } from "../../../types/GetPokemonDataList";
+import { GetPokemonDataList } from "types/GetPokemonDataList";
 
 type PokemonPropsType = {
   data: GetPokemonDataList;

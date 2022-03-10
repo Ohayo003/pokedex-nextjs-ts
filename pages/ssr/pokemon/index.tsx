@@ -1,11 +1,10 @@
-import Router from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import LoadingSpinner from "components/LoadingSpinner";
 import PokemonList from "components/Pokemons/PokemonList";
 import { useQuery } from "@apollo/client";
-import { GET_POKEMON_DATA_LIST } from "../../../graphql/queries/pokemonlist";
-import { GetPokemonDataList } from "../../../types/GetPokemonDataList";
+import { GET_POKEMON_DATA_LIST } from "graphql/queries/pokemonlist";
+import { GetPokemonDataList } from "types/GetPokemonDataList";
 
 // type PokemonPropsType = {
 //   data: GetPokemonDataList[];

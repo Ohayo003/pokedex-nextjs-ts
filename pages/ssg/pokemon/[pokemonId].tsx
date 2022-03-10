@@ -1,19 +1,14 @@
-import {
-  fetchLimitPokemons,
-  fetchPokemonDetails,
-} from "components/functions/fetchPokemonData";
-import { IPokemonDetails } from "components/interface/pokemonData";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { Box } from "@chakra-ui/react";
 import PokemonDetails from "components/Pokemons/PokemonDetails";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "components/LoadingSpinner";
 import client from "apollo/apollo-client";
-import { GET_POKEMON } from "../../../graphql/queries/pokemonlist";
+import { GET_POKEMON } from "graphql/queries/pokemonlist";
 import { GET_POKEMON_DATA_LIST } from "graphql/queries/pokemonlist";
-import { GetPokemonDataList } from "../../../types/GetPokemonDataList";
-import { GetPokemon } from "../../../types/GetPokemon";
+import { GetPokemonDataList } from "types/GetPokemonDataList";
+import { GetPokemon } from "types/GetPokemon";
 
 type PokemonIdType = {
   details: GetPokemon;

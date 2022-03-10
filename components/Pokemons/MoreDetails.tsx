@@ -1,15 +1,5 @@
-import React, { useState } from "react";
-import { IPokemonMoves } from "components/interface/pokemonData";
-import { useEffect } from "react";
-import PokemonMovesObject from "components/functions/pokemonMovesObject";
-import {
-  Box,
-  SimpleGrid,
-  VStack,
-  HStack,
-  type BoxProps,
-  Divider,
-} from "@chakra-ui/react";
+import React from "react";
+import { Box, VStack, HStack, type BoxProps, Divider } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { CloseIcon } from "@chakra-ui/icons";

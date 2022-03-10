@@ -1,4 +1,3 @@
-import { IPokemonData, IPokemonMoves } from "components/interface/pokemonData";
 import { useState } from "react";
 import { GetPokemonDataList } from "types/GetPokemonDataList";
 

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Router, { useRouter } from "next/router";
-import { GetServerSideProps } from "next";
-import { fetchPokemonDetails } from "components/functions/fetchPokemonData";
+import React from "react";
+import { useRouter } from "next/router";
 import { Box } from "@chakra-ui/react";
 import LoadingSpinner from "components/LoadingSpinner";
 import PokemonDetails from "components/Pokemons/PokemonDetails";
 import { useQuery } from "@apollo/client";
-import { GET_POKEMON } from "../../../graphql/queries/pokemonlist";
-import { GetPokemon } from "../../../types/GetPokemon";
+import { GET_POKEMON } from "graphql/queries/pokemonlist";
+import { GetPokemon } from "types/GetPokemon";
 
 // type PokemonIdType = {
 //   data: IPokemonDetails;

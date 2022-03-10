@@ -2,17 +2,15 @@ import {
   Box,
   type BoxProps,
   Container,
-  Link,
   SimpleGrid,
   Flex,
 } from "@chakra-ui/react";
-import { IPokemonData } from "components/interface/pokemonData";
 import Image from "next/image";
 import { TypesColor } from "components/functions/typesColor";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { usePagination } from "components/hooks/usePagination";
-import PaginationButtons from "./PaginationButtons";
+import PaginationButtons from "components/Pokemons/PaginationButtons";
 import { useRouter } from "next/router";
 import { GetPokemonDataList } from "types/GetPokemonDataList";
 
