@@ -6,13 +6,13 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import colorTypes from "components/functions/typesColor";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { usePagination } from "components/hooks/usePagination";
 import PaginationButtons from "components/Pokemons/PaginationButtons";
 import { useRouter } from "next/router";
 import { GetPokemonDataList } from "types/GetPokemonDataList";
+import colorTypes from "../functions/typesColor";
 
 export const MotionBox = motion<BoxProps>(Box);
 

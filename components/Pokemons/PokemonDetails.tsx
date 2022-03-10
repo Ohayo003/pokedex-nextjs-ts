@@ -9,7 +9,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import  colorTypes from "components/functions/typesColor";
+import  colorTypes from "../functions/typesColor";
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
