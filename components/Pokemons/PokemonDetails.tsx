@@ -6,10 +6,10 @@ import {
   VStack,
   HStack,
   ScaleFade,
+  Stack,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { TypesColor } from "components/functions/typesColor";
-import { IPokemonDetails } from "components/interface/pokemonData";
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -30,16 +30,20 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
   const handleViewMoreClose = () => setViewMore(false);
   // console.log(details.moves);
   return (
-    <Box
+    <Stack
       width="inherit"
       height="inherit"
-      display="flex"
-      justifyContent="center"
+      align="center"
+      justify="center"
+      direction={{
+        base: "column",
+        lg: "row",
+      }}
       p=" 20px 0px"
     >
       <Box
         background="#f97316"
-        width={380}
+        width="30rem"
         boxShadow={`0 4px 8px 0 gray, 0 6px 20px 0 gray`}
         borderRadius="20px"
         borderColor="#CAEFFF"
@@ -163,7 +167,6 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                 justifyItems="center"
                 p="5px 0px"
                 gap={1}
-                // spacingX={10}
                 row={details?.stats.length}
                 width="inherit"
                 columns={2}
@@ -186,6 +189,7 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                         border="1px"
                         borderColor="white"
                         borderRadius={50}
+                        position="relative"
                       >
                         <ProgressBar
                           height="22px"
@@ -194,8 +198,22 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                               ? TypesColor(`${details!.element[0]?.type?.name}`)
                               : TypesColor(`${details!.element[1]?.type?.name}`)
                           }
-                          completed={`${basic.base_stat}`}
+                          completed={basic.base_stat}
+                          isLabelVisible={false}
                         />
+                        <Box
+                          position="absolute"
+                          zIndex={1}
+                          fontWeight="bold"
+                          fontStyle="italic"
+                          color="blackAlpha.700"
+                          top={0}
+                          left={59}
+                        >
+                          {basic.base_stat <= 9
+                            ? `0${basic.base_stat}`
+                            : basic.base_stat}
+                        </Box>
                       </Box>
                     </>
                   );
@@ -235,14 +253,14 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
             borderRadius="20px"
             borderColor="#CAEFFF"
           >
-            {/* <MoreDetails
-              moves={details?.moves}
+            <MoreDetails
+              moves={details!.moves}
               setViewMore={handleViewMoreClose}
-            /> */}
+            />
           </Box>
         </ScaleFade>
       ) : null}
-    </Box>
+    </Stack>
   );
 };
 

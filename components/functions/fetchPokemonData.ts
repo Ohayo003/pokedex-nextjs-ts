@@ -1,9 +1,7 @@
 import {
   IPokemonData,
   IPokemonDetails,
-  IPokemonMoves,
 } from "components/interface/pokemonData";
-import PokemonMovesObject from "components/functions/pokemonMovesObject";
 import PokemonObject from "components/functions/pokemonObject";
 import PokemonObjectDetails from "components/functions/pokemonObjectDetails";
 

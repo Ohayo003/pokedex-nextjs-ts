@@ -47,6 +47,22 @@ export const GET_POKEMON = gql`
           name
         }
       }
+      moves: pokemon_v2_pokemonmoves(
+        limit: 9
+        where: { pokemon_v2_move: { power: { _gte: 50 } } }
+        distinct_on: move_id
+      ) {
+        move: pokemon_v2_move {
+          accuracy
+          name
+          power
+          effects: pokemon_v2_moveeffect {
+            effect: pokemon_v2_moveeffecteffecttexts {
+              effect
+            }
+          }
+        }
+      }
     }
   }
 `;

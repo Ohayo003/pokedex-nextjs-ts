@@ -47,6 +47,38 @@ export interface GetPokemon_pokemon_stats {
   stat: GetPokemon_pokemon_stats_stat | null;
 }
 
+export interface GetPokemon_pokemon_moves_move_effects_effect {
+  __typename: "pokemon_v2_moveeffecteffecttext";
+  effect: string;
+}
+
+export interface GetPokemon_pokemon_moves_move_effects {
+  __typename: "pokemon_v2_moveeffect";
+  /**
+   * An array relationship
+   */
+  effect: GetPokemon_pokemon_moves_move_effects_effect[];
+}
+
+export interface GetPokemon_pokemon_moves_move {
+  __typename: "pokemon_v2_move";
+  accuracy: number | null;
+  name: string;
+  power: number | null;
+  /**
+   * An object relationship
+   */
+  effects: GetPokemon_pokemon_moves_move_effects | null;
+}
+
+export interface GetPokemon_pokemon_moves {
+  __typename: "pokemon_v2_pokemonmove";
+  /**
+   * An object relationship
+   */
+  move: GetPokemon_pokemon_moves_move | null;
+}
+
 export interface GetPokemon_pokemon {
   __typename: "pokemon_v2_pokemon";
   id: number;
@@ -65,6 +97,10 @@ export interface GetPokemon_pokemon {
    * An array relationship
    */
   stats: GetPokemon_pokemon_stats[];
+  /**
+   * An array relationship
+   */
+  moves: GetPokemon_pokemon_moves[];
 }
 
 export interface GetPokemon {

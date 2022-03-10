@@ -86,6 +86,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context;
+  console.log(params?.pokemonId);
   const { data } = await client.query<GetPokemon>({
     query: GET_POKEMON,
     variables: { id: params?.pokemonId },

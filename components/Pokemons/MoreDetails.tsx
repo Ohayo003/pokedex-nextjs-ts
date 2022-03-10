@@ -7,43 +7,24 @@ import {
   SimpleGrid,
   VStack,
   HStack,
-  Flex,
   type BoxProps,
-  color,
+  Divider,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { CloseIcon } from "@chakra-ui/icons";
+import { GetPokemon_pokemon_moves } from "types/GetPokemon";
 
 export const MotionBox = motion<BoxProps>(Box);
 
 type MoreDetailsType = {
-  moves: {
-    move: {
-      name: string;
-      url: string;
-    };
-  }[];
+  moves: GetPokemon_pokemon_moves[];
   setViewMore: React.MouseEventHandler<HTMLDivElement>;
 };
 
 const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
-  const [movesData, setMovesData] = useState<IPokemonMoves[]>([]);
-  //   const {moves, setViewMore } = props;
-  useEffect(() => {
-    // handleGetMovesData();
-    const pokemonMoves: IPokemonMoves[] = [];
-    moves.forEach(async (move) => {
-      const data = await fetch(move.move.url);
-      const jsonData = await data.json();
-      const parsed = PokemonMovesObject(jsonData);
-      pokemonMoves.push(parsed);
-      setMovesData(pokemonMoves);
-    });
-  }, [moves]);
-
   return (
-    <Box p="5px 10px">
+    <Box p="10px 10px">
       <Box
         p="10px 0px"
         width="inherit"
@@ -62,7 +43,7 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
           fontSize={20}
           color="white"
         >
-          Skills
+          Moves
         </Box>
         <MotionBox
           as="button"
@@ -80,92 +61,100 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
           <CloseIcon fontSize={12} />
         </MotionBox>
       </Box>
-      <SimpleGrid
-        justifyItems="center"
-        p="5px 0px"
-        // row={10}
-        width="inherit"
-        gap={1}
-        columns={2}
-      >
-        {/* <Flex> */}
-        {movesData.slice(0, 10).map((move) => {
-          return move.power !== null ? (
+      <VStack justifyItems="center">
+        {moves.slice(0, 10).map((move) => {
+          return move.move?.power !== null ? (
             //   <Box key={move.name} height="inherit">
             // {/* <HStack width="inherit" background="yellow"> */}
             <>
-              <Box
-                key={move.name}
-                color="white"
-                width={100}
-                fontSize={15}
-                fontWeight="bold"
-                textAlign="center"
-                background="blue"
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
-              >
-                {move.name}
-              </Box>
-              <VStack
-                ml={-10}
-                width="inherit"
-                background="brown"
-                justifyContent="left"
-              >
-                <Box
-                  background="yellow"
-                  width={200}
-                  position="relative"
-                  justifyContent="left"
-                  display="flex"
+              <HStack justifyContent="center">
+                <VStack>
+                  {move.move?.effects?.effect.map((e) => {
+                    console.log(e.effect);
+                    return (
+                      <>
+                        <Box
+                          key={move.move?.name}
+                          color="white"
+                          width="10rem"
+                          fontSize="md"
+                          fontWeight="bold"
+                          textAlign="center"
+                          display="flex"
+                          flexDirection="column"
+                          justifyContent="center"
+                        >
+                          {move.move?.name}
+                        </Box>
+                        <Box
+                          key={e.effect}
+                          width="10rem"
+                          fontSize="xs"
+                          fontWeight="bold"
+                          fontStyle="italic"
+                          textAlign="center"
+                          color="blackAlpha.700"
+                          flexDirection="column"
+                          justifyContent="center"
+                        >
+                          {e.effect}
+                        </Box>
+                      </>
+                    );
+                  })}
+                </VStack>
+                <VStack
+                  width="xs"
+                  // alignItems="start"
+                  // justifyContent="left"
                 >
-                  <HStack>
-                    <Box
-                      width={200}
-                      border="1px"
-                      borderColor="white"
-                      borderRadius={50}
-                    >
-                      <ProgressBar
-                        height="15px"
-                        bgColor="red"
-                        completed={`${move.power}`}
-                      />
-                    </Box>
-                    <Box fontWeight="semibold" color="white" textAlign="left">
-                      Power
-                    </Box>
-                  </HStack>
-                </Box>
-                <Box justifyContent="left" width="inherit">
-                  <HStack justifyContent="left">
-                    <Box
-                      width={200}
-                      border="1px"
-                      borderColor="white"
-                      borderRadius={50}
-                    >
-                      <ProgressBar
-                        height="15px"
-                        bgColor="skyblue"
-                        completed={`${move.accuracy}`}
-                      />
-                    </Box>
-                    <Box fontWeight="semibold" color="white" textAlign="left">
-                      Accuracy
-                    </Box>
-                  </HStack>
-                </Box>
-              </VStack>
+                  <Box position="relative" display="flex">
+                    <HStack>
+                      <Box
+                        border="1px"
+                        width="10rem"
+                        borderColor="white"
+                        borderRadius={50}
+                      >
+                        <ProgressBar
+                          height=".8rem"
+                          bgColor="red"
+                          completed={`${move.move?.power}`}
+                        />
+                      </Box>
+                      <Box fontWeight="semibold" color="white" textAlign="left">
+                        Power
+                      </Box>
+                    </HStack>
+                  </Box>
+                  <Box width="inherit">
+                    <HStack justify="center">
+                      <Box
+                        width="10rem"
+                        border="1px"
+                        borderColor="white"
+                        borderRadius={50}
+                      >
+                        <ProgressBar
+                          height=".8rem"
+                          bgColor="skyblue"
+                          completed={`${move.move?.accuracy}`}
+                        />
+                      </Box>
+                      <Box fontWeight="semibold" color="white">
+                        Accu.
+                      </Box>
+                    </HStack>
+                  </Box>
+                </VStack>
+              </HStack>
+              <Divider orientation="horizontal" />
             </>
           ) : // {/* </HStack> */}
           //   </Box>
           null;
         })}
-        {/* </Flex> */}
-      </SimpleGrid>
+      </VStack>
     </Box>
   );
 };
