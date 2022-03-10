@@ -9,13 +9,13 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import  colorTypes from "../functions/typesColor";
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ProgressBar from "@ramonak/react-progress-bar";
-import MoreDetails from "./MoreDetails";
-import { GetPokemon } from "../../types/GetPokemon";
+import MoreDetails from "components/Pokemons/MoreDetails";
+import { GetPokemon } from "types/GetPokemon";
+import colorTypes from "components/functions/typesColor";
 
 export const MotionBox = motion<BoxProps>(Box);
 
