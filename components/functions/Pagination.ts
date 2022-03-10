@@ -1,4 +1,4 @@
-import { IPokemonData } from "components/interface/pokemonData";
+import { IPokemonData, IPokemonMoves } from "components/interface/pokemonData";
 import { useState } from "react";
 
 type PaginationType = {

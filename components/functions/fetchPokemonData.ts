@@ -1,7 +1,15 @@
-import React from "react";
-import { IPokemonData, IPokemonDetails } from "../interface/pokemonData";
-import PokemonObject from "./PokemonObject";
-import PokemonObjectDetails from "./PokemonObjectDetails";
+import {
+  IPokemonData,
+  IPokemonDetails,
+  IPokemonMoves,
+} from "components/interface/pokemonData";
+import PokemonMovesObject from "components/functions/PokemonMovesObject";
+import PokemonObject from "components/functions/PokemonObject";
+import PokemonObjectDetails from "components/functions/PokemonObjectDetails";
+
+type IMovesType = {
+  data: IPokemonDetails;
+};
 
 export const fetchLimitPokemons = async () => {
   const data = await fetch(
@@ -24,7 +32,7 @@ export const fetchLimitPokemons = async () => {
 };
 
 export const fetchPokemonDetails = async (id: any) => {
-  const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${parseInt(id)}`);
+  const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   const jsonData = await data.json();
 
   const pokemonobj = PokemonObjectDetails(jsonData);

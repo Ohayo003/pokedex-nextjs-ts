@@ -31,7 +31,20 @@ export interface IPokemonDetails {
       name: string;
     };
   }[];
+  moves: {
+    move: {
+      name: string;
+      url: string;
+    };
+  }[];
   weight: number;
   height: number;
   base_experience: number;
 }
+
+export interface IPokemonMoves {
+  name: string;
+  power: number;
+  accuracy: number;
+}
+[];

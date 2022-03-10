@@ -16,6 +16,7 @@ import PaginationButtons from "./PaginationButtons";
 import { useRouter } from "next/router";
 
 export const MotionBox = motion<BoxProps>(Box);
+
 type PokemonListType = {
   data: IPokemonData[];
 };

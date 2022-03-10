@@ -1,6 +1,8 @@
 import { IPokemonData } from "components/interface/pokemonData";
 
-export default function PokemonObject(data: any): IPokemonData {
+type PokemonObjectType = Record<string, any>;
+
+export default function PokemonObject(data: PokemonObjectType): IPokemonData {
   return {
     id: data.id,
     name: data.name,

@@ -5,22 +5,30 @@ import {
   Flex,
   VStack,
   HStack,
+  ScaleFade,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { TypesColor } from "components/functions/TypesColor";
 import { IPokemonDetails } from "components/interface/pokemonData";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ProgressBar from "@ramonak/react-progress-bar";
+import MoreDetails from "./MoreDetails";
 
 export const MotionBox = motion<BoxProps>(Box);
 
 type PokemonDetailsType = {
   details: IPokemonDetails;
+  
 };
 
 const PokemonDetails = ({ details }: PokemonDetailsType) => {
+  const [viewMore, setViewMore] = useState(false);
+
+  const handleViewMore = () => setViewMore(true);
+  const handleViewMoreClose = () => setViewMore(false);
+  // console.log(details.moves);
   return (
     <Box
       width="inherit"
@@ -194,8 +202,45 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
               </SimpleGrid>
             </Box>
           </Box>
+
+          <Box justifyContent="center" display="flex" width="inherit">
+            <MotionBox
+              width={120}
+              pb={2}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              _hover={{
+                cursor: "pointer",
+                fontWeight: "semibold",
+              }}
+              onClick={handleViewMore}
+              justifyContent="center"
+              textAlign="center"
+              color="white"
+            >
+              View more{">>"}
+            </MotionBox>
+          </Box>
         </Box>
       </Box>
+      {viewMore ? (
+        <ScaleFade initialScale={0.9} in={viewMore}>
+          <Box
+            background="#f97316"
+            ml={10}
+            width={560}
+            height="inherit"
+            boxShadow={`0 4px 8px 0 gray, 0 6px 20px 0 gray`}
+            borderRadius="20px"
+            borderColor="#CAEFFF"
+          >
+            <MoreDetails
+              moves={details.moves}
+              setViewMore={handleViewMoreClose}
+            />
+          </Box>
+        </ScaleFade>
+      ) : null}
     </Box>
   );
 };
