@@ -1,7 +1,7 @@
 import {} from "types/GetPokemonDataList";
 
 const colorTypes = (element: string) => {
-  var color = "";
+  var color: string = "";
   switch (element) {
     case "normal":
       color = "#A8A878";

@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import ProgressBar from "@ramonak/react-progress-bar";
 import MoreDetails from "components/Pokemons/MoreDetails";
 import { GetPokemon } from "types/GetPokemon";
-import colorTypes from "components/functions/typesColor";
+import colorTypes from "components/functions/colorTypes";
 
 export const MotionBox = motion<BoxProps>(Box);
 
