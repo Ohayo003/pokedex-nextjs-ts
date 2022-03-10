@@ -9,7 +9,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import { TypesColor } from "components/functions/typesColor";
+import  colorTypes from "components/functions/typesColor";
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -51,7 +51,7 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
         <Box
           position="relative"
           borderRadius="20px 20px 60px 60px"
-          background={TypesColor(
+          background={colorTypes(
             details!.element?.length <= 1
               ? `${details?.element[0]?.type?.name}`
               : `${details?.element[1]?.type?.name}`
@@ -72,7 +72,7 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
               border="2px"
               textAlign="center"
               borderRadius={20}
-              background={TypesColor(`${details!.element[0]?.type?.name}`)}
+              background={colorTypes(`${details!.element[0]?.type?.name}`)}
             >
               Abilities
             </Box>
@@ -118,7 +118,7 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                     borderRadius={15}
                     border="2px"
                     borderColor="white"
-                    background={TypesColor(`${e.type?.name}`)}
+                    background={colorTypes(`${e.type?.name}`)}
                     m="0px 10px"
                     fontSize={17}
                     fontWeight="bold"
@@ -195,8 +195,8 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
                           height="22px"
                           bgColor={
                             details!.element.length <= 1
-                              ? TypesColor(`${details!.element[0]?.type?.name}`)
-                              : TypesColor(`${details!.element[1]?.type?.name}`)
+                              ? colorTypes(`${details!.element[0]?.type?.name}`)
+                              : colorTypes(`${details!.element[1]?.type?.name}`)
                           }
                           completed={basic.base_stat}
                           isLabelVisible={false}

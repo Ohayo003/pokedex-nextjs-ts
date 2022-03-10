@@ -1,6 +1,6 @@
 import {} from "types/GetPokemonDataList";
 
-export const TypesColor = (element: string) => {
+const colorTypes = (element: string) => {
   var color = "";
   switch (element) {
     case "normal":
@@ -62,3 +62,4 @@ export const TypesColor = (element: string) => {
   }
   return color;
 };
+export default colorTypes;
