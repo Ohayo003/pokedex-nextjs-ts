@@ -1,4 +1,3 @@
-import {} from "types/GetPokemonDataList";
 
 const colorTypes = (element: string) => {
   var color: string = "";

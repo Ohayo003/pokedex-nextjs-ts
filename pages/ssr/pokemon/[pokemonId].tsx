@@ -6,6 +6,7 @@ import PokemonDetails from "components/Pokemons/PokemonDetails";
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON } from "graphql/queries/pokemonlist";
 import { GetPokemon } from "types/GetPokemon";
+import ErrorComponent from "components/ErrorComponent";
 
 // type PokemonIdType = {
 //   data: IPokemonDetails;
@@ -26,8 +27,8 @@ const PokemonId = () => {
   }
   if (error) {
     return (
-      <Box height="inherit" width="inherit">
-        <h1>Failed Fetching Data {query.pokemonId}</h1>
+      <Box height="inherit">
+        <ErrorComponent />
       </Box>
     );
   }

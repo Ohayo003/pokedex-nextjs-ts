@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import LoadingSpinner from "components/LoadingSpinner";
 import PokemonList from "components/Pokemons/PokemonList";
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON_DATA_LIST } from "graphql/queries/pokemonlist";
 import { GetPokemonDataList } from "types/GetPokemonDataList";
+import ErrorComponent from "components/ErrorComponent";
 
 // type PokemonPropsType = {
 //   data: GetPokemonDataList[];
@@ -15,7 +16,7 @@ const Pokemon = () => {
     GET_POKEMON_DATA_LIST
   );
 
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   if (loading && !data) {
     return (
@@ -27,7 +28,7 @@ const Pokemon = () => {
   if (error) {
     return (
       <Box height="inherit">
-        <h1>Something went wrong while Fetching Data</h1>
+        <ErrorComponent />
       </Box>
     );
   }

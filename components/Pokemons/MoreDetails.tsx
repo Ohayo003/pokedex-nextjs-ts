@@ -110,6 +110,7 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
                           height=".8rem"
                           bgColor="red"
                           completed={`${move.move?.power}`}
+                          maxCompleted={200}
                         />
                       </Box>
                       <Box fontWeight="semibold" color="white" textAlign="left">
@@ -129,6 +130,7 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
                           height=".8rem"
                           bgColor="skyblue"
                           completed={`${move.move?.accuracy}`}
+                          maxCompleted={200}
                         />
                       </Box>
                       <Box fontWeight="semibold" color="white">
