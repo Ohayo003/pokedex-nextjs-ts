@@ -57,10 +57,6 @@ const PokemonList = ({ data, fetchType }: PokemonListType) => {
           {currentData().map((pokemon) => {
             return (
               <Box key={pokemon.id}>
-                {/* <Link
-                  _hover={{ textDecoration: "none" }}
-                  href={`/ssg/pokemon/${pokemon.id}`}
-                > */}
                 <MotionBox
                   key={pokemon.id}
                   borderRadius={10}
@@ -166,7 +162,6 @@ const PokemonList = ({ data, fetchType }: PokemonListType) => {
                     </Box>
                   </Box>
                 </MotionBox>
-                {/* </Link> */}
               </Box>
             );
           })}

@@ -54,8 +54,6 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
       <VStack justifyItems="center">
         {moves.slice(0, 10).map((move) => {
           return move.move?.power !== null ? (
-            //   <Box key={move.name} height="inherit">
-            // {/* <HStack width="inherit" background="yellow"> */}
             <>
               <HStack justifyContent="center">
                 <VStack>
@@ -74,11 +72,7 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
                     {move.move?.name}
                   </Box>
                 </VStack>
-                <VStack
-                  width="xs"
-                  // alignItems="start"
-                  // justifyContent="left"
-                >
+                <VStack width="xs">
                   <Box position="relative" display="flex">
                     <HStack>
                       <Box
@@ -141,9 +135,7 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
               })}
               <Divider orientation="horizontal" />
             </>
-          ) : // {/* </HStack> */}
-          //   </Box>
-          null;
+          ) : null;
         })}
       </VStack>
     </Box>

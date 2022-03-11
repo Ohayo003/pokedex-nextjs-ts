@@ -12,7 +12,6 @@ function NavigatButton() {
     <Box alignSelf="center" width="100%" maxW={500} position="relative">
       <Image src={pokemonGo} alt="Pokemon Egg" />
       <Link passHref href="/ssg/pokemon">
-        {/* <MotionBox whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}> */}
         <MotionBox
           as="button"
           whileHover={{ scale: 1.1 }}
@@ -34,7 +33,6 @@ function NavigatButton() {
         >
           SSG Pokedex
         </MotionBox>
-        {/* </MotionBox> */}
       </Link>
       <Link passHref href={"/csr/pokemon"}>
         <MotionBox
@@ -55,7 +53,7 @@ function NavigatButton() {
           className={styles.btnNavigation}
           left="38%"
         >
-          SSR Pokedex
+          CSR Pokedex
         </MotionBox>
       </Link>
     </Box>
