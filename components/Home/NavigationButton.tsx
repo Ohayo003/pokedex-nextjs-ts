@@ -36,7 +36,7 @@ function NavigatButton() {
         </MotionBox>
         {/* </MotionBox> */}
       </Link>
-      <Link passHref href={"/ssr/pokemon"}>
+      <Link passHref href={"/csr/pokemon"}>
         <MotionBox
           pl={1}
           pr={1}

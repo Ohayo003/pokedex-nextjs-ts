@@ -30,7 +30,7 @@ const PokemonList = ({ data, fetchType }: PokemonListType) => {
 
   const handleChangeRoute = (id: number) => {
     route.push(
-      fetchType === "csr" ? `/ssr/pokemon/${id}` : `/ssg/pokemon/${id}`,
+      fetchType === "csr" ? `/csr/pokemon/${id}` : `/ssg/pokemon/${id}`,
       undefined,
       { shallow: false }
     );
