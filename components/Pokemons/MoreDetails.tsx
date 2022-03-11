@@ -59,39 +59,20 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
             <>
               <HStack justifyContent="center">
                 <VStack>
-                  {move.move?.effects?.effect.map((e) => {
-                    console.log(e.effect);
-                    return (
-                      <>
-                        <Box
-                          key={move.move?.name}
-                          color="white"
-                          width="10rem"
-                          fontSize="md"
-                          fontWeight="bold"
-                          textAlign="center"
-                          display="flex"
-                          flexDirection="column"
-                          justifyContent="center"
-                        >
-                          {move.move?.name}
-                        </Box>
-                        <Box
-                          key={e.effect}
-                          width="10rem"
-                          fontSize="xs"
-                          fontWeight="bold"
-                          fontStyle="italic"
-                          textAlign="center"
-                          color="blackAlpha.700"
-                          flexDirection="column"
-                          justifyContent="center"
-                        >
-                          {e.effect}
-                        </Box>
-                      </>
-                    );
-                  })}
+                  <Box
+                    key={move.move?.name}
+                    color="white"
+                    width="10rem"
+                    fontSize="xl"
+                    fontStyle="italic"
+                    fontWeight="bold"
+                    textAlign="center"
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                  >
+                    {move.move?.name}
+                  </Box>
                 </VStack>
                 <VStack
                   width="xs"
@@ -140,6 +121,24 @@ const MoreDetails = ({ moves, setViewMore }: MoreDetailsType) => {
                   </Box>
                 </VStack>
               </HStack>
+              {move.move?.effects?.effect.map((e) => {
+                console.log(e.effect);
+                return (
+                  <Box
+                    key={e.effect}
+                    width="full"
+                    fontSize="xs"
+                    fontWeight="bold"
+                    fontStyle="italic"
+                    textAlign="center"
+                    color="blackAlpha.700"
+                    flexDirection="column"
+                    justifyContent="center"
+                  >
+                    {e.effect}
+                  </Box>
+                );
+              })}
               <Divider orientation="horizontal" />
             </>
           ) : // {/* </HStack> */}
