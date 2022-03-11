@@ -14,15 +14,10 @@ type PokemonIdType = {
   details: GetPokemon;
 };
 
-interface Params {
-  [key: string]: string;
-  id: string;
-}
 
 const PokemonId = ({ details }: PokemonIdType) => {
   const [loading, setLoading] = useState(false);
   const route = useRouter();
-  // console.log(query.pokemonId);
 
   useEffect(() => {
     const handelChangeRoute = () => {
@@ -59,6 +54,7 @@ const PokemonId = ({ details }: PokemonIdType) => {
 
 export default PokemonId;
 
+///GET STATIC PATHS FUNCTION
 export const getStaticPaths: GetStaticPaths = async () => {
   // const { pokemonId } = ;
 
@@ -79,6 +75,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
+///GET STATIC PROPS FUNCTION
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context;
   console.log(params?.pokemonId);

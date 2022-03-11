@@ -14,6 +14,7 @@ type PokemonPropsType = {
 
 const Pokemon = ({ data }: PokemonPropsType) => {
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const handelChangeRoute = () => {
       console.log("changing route...");
@@ -46,6 +47,7 @@ const Pokemon = ({ data }: PokemonPropsType) => {
 
 export default Pokemon;
 
+///GET STATIC PROPS FUNCTION
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query<GetPokemonDataList>({
     query: GET_POKEMON_DATA_LIST,

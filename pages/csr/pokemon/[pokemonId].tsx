@@ -8,10 +8,6 @@ import { GET_POKEMON } from "graphql/queries/pokemonlist";
 import { GetPokemon } from "types/GetPokemon";
 import ErrorComponent from "components/ErrorComponent";
 
-// type PokemonIdType = {
-//   data: IPokemonDetails;
-// };
-
 const PokemonId = () => {
   const { query } = useRouter();
   const { loading, data, error } = useQuery<GetPokemon>(GET_POKEMON, {
@@ -40,15 +36,3 @@ const PokemonId = () => {
 };
 
 export default PokemonId;
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const { pokemonId } = context.params!;
-
-//   const data = await fetchPokemonDetails(pokemonId);
-
-//   return {
-//     props: {
-//       data: data,
-//     },
-//   };
-// };
