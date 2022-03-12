@@ -16,6 +16,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import MoreDetails from "components/Pokemons/MoreDetails";
 import { GetPokemon } from "types/GetPokemon";
 import colorTypes from "components/functions/colorTypes";
+import StatsComponent from "./StatsComponent";
 
 export const MotionBox = motion<BoxProps>(Box);
 
@@ -70,6 +71,8 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
               fontWeight="bold"
               color="white"
               border="2px"
+              pl={2}
+              pr={2}
               textAlign="center"
               borderRadius={20}
               background={colorTypes(`${details!.element[0]?.type?.name}`)}
@@ -151,76 +154,9 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
               </VStack>
             </Flex>
           </Box>
-          <Box mt={2}>
-            <Box
-              textAlign="center"
-              fontSize={25}
-              fontWeight="bold"
-              color="white"
-              fontStyle="italic"
-              letterSpacing="wider"
-            >
-              Basic Stats
-            </Box>
-            <Box p="5px 10px">
-              <SimpleGrid
-                justifyItems="center"
-                p="5px 0px"
-                gap={1}
-                row={details?.stats.length}
-                width="inherit"
-                columns={2}
-              >
-                {details?.stats.map((basic) => {
-                  return (
-                    <>
-                      <Box
-                        key={basic.stat?.name}
-                        color="white"
-                        width={120}
-                        fontSize={15}
-                        fontWeight="bold"
-                        textAlign="right"
-                      >
-                        {basic?.stat?.name}
-                      </Box>
-                      <Box
-                        width={150}
-                        border="1px"
-                        borderColor="white"
-                        borderRadius={50}
-                        position="relative"
-                      >
-                        <ProgressBar
-                          height="22px"
-                          bgColor={
-                            details!.element.length <= 1
-                              ? colorTypes(`${details!.element[0]?.type?.name}`)
-                              : colorTypes(`${details!.element[1]?.type?.name}`)
-                          }
-                          completed={basic.base_stat}
-                          isLabelVisible={false}
-                        />
-                        <Box
-                          position="absolute"
-                          zIndex={1}
-                          fontWeight="bold"
-                          fontStyle="italic"
-                          color="blackAlpha.700"
-                          top={0}
-                          left={59}
-                        >
-                          {basic.base_stat <= 9
-                            ? `0${basic.base_stat}`
-                            : basic.base_stat}
-                        </Box>
-                      </Box>
-                    </>
-                  );
-                })}
-              </SimpleGrid>
-            </Box>
-          </Box>
+
+          {/**Display Stats Section */}
+          <StatsComponent stats={details?.stats!} element={details?.element!} />
 
           <Box justifyContent="center" display="flex" width="inherit">
             <MotionBox
