@@ -17,6 +17,7 @@ import MoreDetails from "components/Pokemons/MoreDetails";
 import { GetPokemon } from "types/GetPokemon";
 import colorTypes from "components/functions/colorTypes";
 import StatsComponent from "./StatsComponent";
+import AbilitiesComponent from "./AbilitiesComponent";
 
 export const MotionBox = motion<BoxProps>(Box);
 
@@ -66,37 +67,11 @@ const PokemonDetails = ({ details }: PokemonDetailsType) => {
             width={20}
             height={20}
           />
-          <Box position="absolute" top="5" right="5" fontSize={17}>
-            <Box
-              fontWeight="bold"
-              color="white"
-              border="2px"
-              pl={2}
-              pr={2}
-              textAlign="center"
-              borderRadius={20}
-              background={colorTypes(`${details!.element[0]?.type?.name}`)}
-            >
-              Abilities
-            </Box>
-            {details?.abilities.map((skill, idx) => {
-              return (
-                <HStack key={idx}>
-                  <Box>
-                    <StarIcon key={idx} color="yellow" />
-                  </Box>
-                  <Box
-                    fontStyle="italic"
-                    letterSpacing="wider"
-                    fontWeight="semibold"
-                    color="white"
-                  >
-                    {skill?.ability?.name}
-                  </Box>
-                </HStack>
-              );
-            })}
-          </Box>
+          {/** Display the Abilities */}
+          <AbilitiesComponent
+            abilities={details?.abilities!}
+            element={details?.element!}
+          />
         </Box>
         <Box width="inherit" height="inherit">
           <Box
